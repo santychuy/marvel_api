@@ -4,7 +4,8 @@ import helmet from 'helmet';
 import cors from 'cors';
 
 import config from './config';
-import marvelRoutes from './routes/marvel.routes';
+import colaboratorsRoutes from './routes/colaborators.routes';
+import charactersRoutes from './routes/characters.routes';
 
 const {
   APP: { NODE_ENV },
@@ -18,6 +19,7 @@ app.use(urlencoded({ extended: false }));
 app.use(cors());
 if (NODE_ENV === 'development') app.use(morgan('dev'));
 
-app.use('/marvel', marvelRoutes);
+app.use('/marvel/colaborators', colaboratorsRoutes);
+app.use('/marvel/characters', charactersRoutes);
 
 export default app;
