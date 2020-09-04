@@ -20,6 +20,16 @@ Como debe de estar formado nuestra URL es de la siguiente manera:
 
 <br>
 
+## Tener en cuenta
+
+Se utiliza **Redis** para tenerlo en cuenta a la hora de correr el proyecto
+
+<br>
+
+---
+
+<br>
+
 ## Endpoints
 
 🗣 **NOTA**: Sustituir **{character}** por el personaje que queramos que deseemos.
