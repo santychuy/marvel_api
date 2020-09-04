@@ -2,6 +2,7 @@ import chalk from 'chalk';
 
 import config from './config';
 import app from './app';
+import './database';
 
 const {
   APP: { PORT },

@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import axios from 'axios';
 
+import Client from '../database';
 import FillMarvelURL from '../helpers/fillMarvelURL';
 import { error400, error404 } from '../helpers/errorHandlers';
 import { formatJSONColaborators } from '../helpers/formatJSON';
@@ -26,7 +27,9 @@ export default async (req: Request, res: Response): Promise<Response> => {
       } = data;
 
       const json = formatJSONColaborators(results);
+      const textJson = JSON.stringify(json);
 
+      Client.setex(`${character}Colab`, 3600, textJson);
       return res.status(status).json(json);
     } catch (e) {
       return res.status(400).json(error400(e.message));

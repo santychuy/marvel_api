@@ -1,5 +1,6 @@
-import { ReduceColabs, ReduceCharacters, Characters } from '../ts/interfaces';
-import ColabNames from './colabNamesByRole';
+import { ReduceColabs, ReduceCharacters } from '../ts/interfaces';
+import ColabNames from './formatColabNamesByRole';
+import CharactersWithComics from './formatCharactersWithComics';
 import { latesDateCharacters, latesDateColab } from './latestDate';
 
 export const formatJSONColaborators = (res: []) => {
@@ -37,20 +38,10 @@ export const formatJSONCharacters = (res: []) => {
   });
 
   const latestDate = latesDateCharacters(reduceRes);
-
-  const tempCharacters: Characters[] = [];
-  reduceRes.forEach(({ title, characters: { available, items } }) => {
-    if (available > 1) {
-      items.forEach(({ name }) => {
-        if (name !== 'Iron Man' && name !== 'Captain America') {
-          tempCharacters.push({ character: name, comic: title });
-        }
-      });
-    }
-  });
+  const characters = CharactersWithComics(reduceRes);
 
   return {
     last_sync: `Fecha de la última sincronización: ${latestDate}`,
-    characters: tempCharacters,
+    characters,
   };
 };

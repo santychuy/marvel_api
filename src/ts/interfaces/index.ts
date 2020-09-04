@@ -20,8 +20,7 @@ export interface ReduceCharacters {
 
 export interface Characters {
   character: string;
-  /* comics: string[]; */
-  comic: string;
+  comics: string[];
 }
 
 export interface ValidationCharacterId {

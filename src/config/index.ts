@@ -5,7 +5,7 @@ dotenv.config();
 export default {
   APP: {
     NODE_ENV: process.env.NODE_ENV,
-    PORT: process.env.PORT || 4000,
+    PORT: process.env.PORT || 80,
   },
   MARVEL_CONFIG: {
     MARVEL_API_URL: process.env.MARVEL_API_URL,
