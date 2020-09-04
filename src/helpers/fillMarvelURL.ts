@@ -6,4 +6,4 @@ const {
 } = config;
 
 export default (path: string): string =>
-  `${MARVEL_API_URL}${path}?ts=1&apikey=${MARVEL_API_KEY_PUBLIC}&hash=${MARVEL_API_HASH}`;
+  `${MARVEL_API_URL}${path}&ts=1&apikey=${MARVEL_API_KEY_PUBLIC}&hash=${MARVEL_API_HASH}`;
