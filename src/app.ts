@@ -1,4 +1,4 @@
-import express, { Application, json, urlencoded } from 'express';
+import express, { Application, json, urlencoded, Response } from 'express';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
@@ -6,6 +6,7 @@ import cors from 'cors';
 import config from './config';
 import colaboratorsRoutes from './routes/colaborators.routes';
 import charactersRoutes from './routes/characters.routes';
+import { error404 } from './helpers/errorHandlers';
 
 const {
   APP: { NODE_ENV },
@@ -21,5 +22,6 @@ if (NODE_ENV === 'development') app.use(morgan('dev'));
 
 app.use('/marvel/colaborators', colaboratorsRoutes);
 app.use('/marvel/characters', charactersRoutes);
+app.use((_req, res: Response) => res.status(404).send(error404('Invalid Request')));
 
 export default app;
