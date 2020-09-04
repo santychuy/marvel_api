@@ -1,10 +1,9 @@
-/* eslint-disable import/prefer-default-export */
-import { Reduce } from '../ts/interfaces';
+import { ReduceColabs, ReduceCharacters, Characters } from '../ts/interfaces';
 import ColabNames from './colabNamesByRole';
-import LatestDate from './latestDate';
+import { latesDateCharacters, latesDateColab } from './latestDate';
 
 export const formatJSONColaborators = (res: []) => {
-  const reduceRes: Reduce[] = res.map(comic => {
+  const reduceRes: ReduceColabs[] = res.map(comic => {
     const {
       modified,
       creators: { items },
@@ -13,7 +12,7 @@ export const formatJSONColaborators = (res: []) => {
     return { modified, items };
   });
 
-  const latestDate = LatestDate(reduceRes);
+  const latestDate = latesDateColab(reduceRes);
   const editors = ColabNames(reduceRes, 'editor');
   const writers = ColabNames(reduceRes, 'writer');
   const colorists = ColabNames(reduceRes, 'colorist');
@@ -26,4 +25,32 @@ export const formatJSONColaborators = (res: []) => {
   };
 };
 
-/* export const formatJSONCharacters = (res: []) => {}; */
+export const formatJSONCharacters = (res: []) => {
+  const reduceRes: ReduceCharacters[] = res.map(comic => {
+    const {
+      modified,
+      title,
+      characters: { available, items },
+    } = comic;
+
+    return { modified, title, characters: { available, items } };
+  });
+
+  const latestDate = latesDateCharacters(reduceRes);
+
+  const tempCharacters: Characters[] = [];
+  reduceRes.forEach(({ title, characters: { available, items } }) => {
+    if (available > 1) {
+      items.forEach(({ name }) => {
+        if (name !== 'Iron Man' && name !== 'Captain America') {
+          tempCharacters.push({ character: name, comic: title });
+        }
+      });
+    }
+  });
+
+  return {
+    last_sync: `Fecha de la última sincronización: ${latestDate}`,
+    characters: tempCharacters,
+  };
+};

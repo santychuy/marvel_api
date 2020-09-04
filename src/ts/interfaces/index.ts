@@ -1,4 +1,4 @@
-export interface Reduce {
+export interface ReduceColabs {
   modified: string;
   items: [
     {
@@ -7,4 +7,24 @@ export interface Reduce {
       role: string;
     }
   ];
+}
+
+export interface ReduceCharacters {
+  modified: string;
+  title: string;
+  characters: {
+    available: number;
+    items: [{ resourceURI: string; name: string }];
+  };
+}
+
+export interface Characters {
+  character: string;
+  /* comics: string[]; */
+  comic: string;
+}
+
+export interface ValidationCharacterId {
+  characterId: string | null;
+  valid: boolean;
 }
