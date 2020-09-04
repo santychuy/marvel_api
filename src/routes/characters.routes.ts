@@ -1,13 +1,9 @@
 import { Router } from 'express';
 
-import {
-  capAmericaCharacters,
-  ironManCharacters,
-} from '../controllers/characters.controller';
+import GetRelatedCharacters from '../controllers/characters.controller';
 
 const router = Router();
 
-router.get('/ironman', ironManCharacters);
-router.get('/capamerica', capAmericaCharacters);
+router.get('/:character', GetRelatedCharacters);
 
 export default router;
