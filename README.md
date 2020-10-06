@@ -1,7 +1,3 @@
-# Prueba Albo Marvel
-
-[- Notion Link](https://www.notion.so/Prueba-Albo-15baafe6d95b43bd89c339acc44a9c54)
-
 ## Descripción
 
 Haremos una API con la que ofreceremos **2** **endpoints** con las que se consumirá los siguientes servicios:
